@@ -1,3 +1,5 @@
+import itertools
+
 from util import make_mod_matcher
 
 """
@@ -11,24 +13,20 @@ TODO: write this formally
 
 """
 
-EXPECT_TRUE = [ #TODO: generate this list
-    (28, 3),
-    (10, 9),
-    (10, 3),
-    (9, 8),
-    (9, 4),
-    (9, 2),
-    (5, 4),
-    (5, 2),
-    (4, 3),
-    (3, 2),
-    (2, 1)
-]
+EXPECT_TRUE = [(2,1)]+list(itertools.chain(
+	*[ #TODO: indentation?
+		[
+			(b, int((b-1)**(1/k)))
+			for k in itertools.takewhile(lambda i: ((b-1)**(1/i)).is_integer(), range(1,10))
+		]
+		for b in range(3,36)
+	]
+))
 EXPECT_FALSE = [
     (10, 4),
     (10, 27)
 ]
-RANGE = range(10**6)
+RANGE = range(10**5)
 
 for case in EXPECT_TRUE + EXPECT_FALSE:
     check_mod_match = make_mod_matcher(case[0], case[1])
@@ -38,4 +36,4 @@ for case in EXPECT_TRUE + EXPECT_FALSE:
         'd': case[1],
         'm': match
     }
-    print("Base {b}\t Divisor {d}: {m}".format(**str_dict))
+    print("Base {b}\t Divisor {d}:\t{m}".format(**str_dict))
