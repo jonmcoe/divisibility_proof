@@ -32,7 +32,7 @@ RANGE = range(10**6)
 
 for case in EXPECT_TRUE + EXPECT_FALSE:
     check_mod_match = make_mod_matcher(case[0], case[1])
-    match = all([check_mod_match(i) for i in RANGE])
+    match = all((check_mod_match(i) for i in RANGE))
     str_dict = {
         'b': case[0],
         'd': case[1],
