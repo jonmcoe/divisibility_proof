@@ -13,24 +13,26 @@ TODO: write this formally
 
 """
 
-EXPECT_TRUE = [(2,1)]+list(itertools.chain(
+MAX_BASE = 36
+				     # this shows approach to generating is unsound. 33,2 is excluded by below
+EXPECT_TRUE = [(2,1),(33,2)]+list(itertools.chain(
 	*[ #TODO: indentation?
 		[
 			(b, int((b-1)**(1/k)))
-			for k in itertools.takewhile(lambda i: ((b-1)**(1/i)).is_integer(), range(1,10))
+			for k in itertools.takewhile(lambda i: ((b-1)**(1/i)).is_integer(), itertools.count(1))
 		]
-		for b in range(3,36)
+		for b in range(3,MAX_BASE)
 	]
 ))
 EXPECT_FALSE = [
     (10, 4),
     (10, 27)
 ]
-RANGE = range(10**5)
+N_RANGE = range(10**5)
 
 for case in EXPECT_TRUE + EXPECT_FALSE:
     check_mod_match = make_mod_matcher(case[0], case[1])
-    match = all((check_mod_match(i) for i in RANGE))
+    match = all((check_mod_match(i) for i in N_RANGE))
     str_dict = {
         'b': case[0],
         'd': case[1],
