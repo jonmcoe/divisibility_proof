@@ -1,6 +1,8 @@
 import string
 
 
+# TODO: cut DIGITS, don't use python int case, 
+#		so bases are not limited to 36
 DIGITS = string.digits + string.ascii_uppercase
 MAX_BASE = len(DIGITS)
 

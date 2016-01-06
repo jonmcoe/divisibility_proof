@@ -11,7 +11,7 @@ TODO: write this formally
 
 """
 
-EXPECT_TRUE = [
+EXPECT_TRUE = [ #TODO: generate this list
 	(28, 3),
 	(10, 9),
 	(10, 3),
