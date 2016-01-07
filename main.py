@@ -13,7 +13,7 @@ TODO: write this formally
 
 """
 
-MAX_BASE = 36
+MAX_BASE = 50
 EXPECT_TRUE = [(2, 1)] + list(itertools.chain(
     *[  # TODO: indentation?
         [
