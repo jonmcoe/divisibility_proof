@@ -46,6 +46,7 @@ def _check_pair_and_print(base, divisor, expected):
     print("Base {b}\t Divisor {d}:\t{m}".format(**str_dict))
     assert match == expected
 
+
 if __name__ == '__main__':
 
     for case in EXPECT_TRUE:
