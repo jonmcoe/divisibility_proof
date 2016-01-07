@@ -17,12 +17,11 @@ MAX_BASE = 36
 EXPECT_TRUE = [(2, 1)] + list(itertools.chain(
     *[  # TODO: indentation?
         [
-            (b, int((b - 1) ** (1 / k)))
-            for k in itertools.takewhile(lambda i: ((b - 1) ** (1 / i)) >= 2,
-                                         itertools.count(1))
-            if ((b - 1) ** (1 / k)).is_integer()
+            (base, divisor)
+            for divisor in range(2,base)
+            if (base-1) % divisor == 0  # naive factorization. could be more performant
         ]
-        for b in range(3, MAX_BASE)
+        for base in range(3, MAX_BASE)
     ]
 ))
 EXPECT_FALSE = [
