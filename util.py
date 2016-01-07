@@ -1,6 +1,6 @@
 def make_mod_matcher(base, divisor):
     def f(n):
-        return n % divisor == sum_digits(int_to_digits_list(base, n)) % divisor
+        return n % divisor == sum(int_to_digits_list(base, n)) % divisor
     return f
 
 
@@ -12,6 +12,3 @@ def int_to_digits_list(base, n):
         ans = [n % base] + ans
         n //= base
     return ans
-
-
-sum_digits = sum
